@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="DolarCartao.Converter"
+             Padding="20">
+    <AbsoluteLayout>
+        <TableView Intent="Form" HasUnevenRows="True" AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All">
+            <TableRoot>
+                <TableSection>
+                    <ViewCell>
+                        <StackLayout>
+                            <Label HorizontalOptions="Center" HorizontalTextAlignment="Center" Text="Dólar Cartão - cotação de hoje do seu roxinho!!!" TextColor="Purple" FontAttributes="Bold" FontSize="Large" />
+                            <Label/>
+                        </StackLayout>
+                    </ViewCell>
+                    <ViewCell>
+                        <StackLayout Orientation="Horizontal">
+                            <Label FontSize="Medium" Text="Dólar USD:" VerticalOptions="Center"/>
+                            <Entry FontSize="Medium" Placeholder="Ex: 4.99 - use . para os centavos" x:Name="tf_dollar" HorizontalOptions="FillAndExpand" Keyboard="Numeric"/>
+                        </StackLayout>
+                    </ViewCell>
+                    <ViewCell>
+                        <BoxView/>
+                    </ViewCell>
+                    <ViewCell>
+                        <StackLayout Orientation="Horizontal">
+                            <Label FontSize="Medium" Text="Real BRL:" VerticalOptions="Center"/>
+                            <Entry FontSize="Medium" Placeholder="Aperte o Converter!" x:Name="tf_real" HorizontalOptions="FillAndExpand" IsReadOnly="True"/>
+                        </StackLayout>
+                    </ViewCell>
+                    <ViewCell Tapped="Button_Clicked">
+                        <StackLayout>
+                            <Label/>
+                            <Button Text="Converter!!!" Clicked="Button_Clicked" FontSize="Large" HorizontalOptions="Center"/>
+                            <Label x:Name="tf_obs" FontSize="Micro" HorizontalTextAlignment="Center"/>
+                        </StackLayout>
+                    </ViewCell>
+                    <ViewCell IsEnabled="False">
+                        <StackLayout>
+                            <Label/>
+                            <Label Text="Dados utilizados na conversão.:" />
+                            <Label x:Name="tf_dataUtil"/>
+                            <Label x:Name="tf_dollarPTAX"/>
+                            <Label x:Name="tf_spread"/>
+                            <Label x:Name="tf_iof"/>
+                        </StackLayout>
+                    </ViewCell>
+                </TableSection>
+            </TableRoot>
+        </TableView>
+        <Label FontSize="Micro" VerticalOptions="Center" Text="*Valor convertido pode ser diferente do que será praticado no seu caso pela operadora de cartão, devido às variações de spread bancário. Este app não é vinculado ao Nubank® e a conversão é feita tendo como base as regras da própria operadora. Nós não nos responsabilizamos por eventuais diferenças entre o calculado e o valor real pago"
+               AbsoluteLayout.LayoutBounds="0, 1, 1, 70" AbsoluteLayout.LayoutFlags="PositionProportional, WidthProportional"/>
+        <BoxView Color="Gray" Opacity="0.5"
+			AbsoluteLayout.LayoutBounds="0, 1, 1, 70" AbsoluteLayout.LayoutFlags="PositionProportional, WidthProportional" />
+    </AbsoluteLayout>
+</ContentPage>
