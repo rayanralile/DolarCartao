@@ -19,7 +19,7 @@
                     <ViewCell>
                         <StackLayout Orientation="Horizontal">
                             <Label FontSize="Medium" Text="Dólar USD:" VerticalOptions="Center"/>
-                            <Entry FontSize="Medium" Placeholder="Ex: 4.99 - use . para os centavos" x:Name="tf_dollar" HorizontalOptions="FillAndExpand" Keyboard="Numeric"/>
+                            <Entry FontSize="Medium" Placeholder="Ex: 4,35" x:Name="tf_dollar" HorizontalOptions="FillAndExpand" Keyboard="Numeric"/>
                         </StackLayout>
                     </ViewCell>
                     <ViewCell>

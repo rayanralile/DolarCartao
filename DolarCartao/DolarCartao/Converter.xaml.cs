@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Xml;
@@ -27,8 +28,8 @@ namespace DolarCartao
         protected override async void OnAppearing()
         {
             
-            _spread = double.Parse(await _client.GetStringAsync(Spread));
-            _iof = double.Parse(await _client.GetStringAsync(IOF));
+            _spread = double.Parse(await _client.GetStringAsync(Spread), CultureInfo.InvariantCulture);
+            _iof = double.Parse(await _client.GetStringAsync(IOF), CultureInfo.InvariantCulture);
             await GetPTAX(_dataPTAX);
 
             tf_dataUtil.Text = $"Data do último dia útil: {_dataPTAX.ToShortDateString()}";
@@ -53,7 +54,7 @@ namespace DolarCartao
             XmlDocument doc = new XmlDocument();
             doc.LoadXml(_content);
             XmlNodeList elemList = doc.GetElementsByTagName("d:cotacaoVenda");
-            _cotacaoPTAX = double.Parse(elemList[0].InnerXml);
+            _cotacaoPTAX = double.Parse(elemList[0].InnerXml, CultureInfo.InvariantCulture);
         }
         private string GetAddUrlPTAX(DateTime dateTime)
         {
@@ -71,7 +72,9 @@ namespace DolarCartao
                 DisplayAlert("Digite um valor", "Você deve preencher o campo Dólar USD para converter", "Ok");
                 return;
             }
-            dollarText = dollarText.Replace(",", ".");
+         //   DisplayAlert("Antes conv", dollarText, "OK");
+         //   dollarText = dollarText.Replace(",", ".");
+         //   DisplayAlert("Depois conv", dollarText, "OK");
             double dollar = double.Parse(dollarText);
             double cotacaoNubank = (dollar * (_cotacaoPTAX * _spread)) * _iof;
             tf_real.Text = Math.Round(cotacaoNubank, 2).ToString("0.00");
